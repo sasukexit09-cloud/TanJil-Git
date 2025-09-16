@@ -13,7 +13,7 @@
   "checkApproval": true,
   "language": "en",
   "notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
-  "nickNameBot": "🪶 Cʜᴏᴄᴏʟᴀᴛᴇ ➝ 🌷🩶💋",
+  "nickNameBot": "BOT NICKNAME DEW",
   "prefix": "/",
   "adminOnly": {
     "enable": false,
@@ -21,14 +21,12 @@
   },
   "DEV": ["61579509758592"],
   "adminBot": [
-    "61579509758592",
-    "100047994102529"
+    "61579509758592"
   ],
   "whiteListMode": {
     "enable": false,
     "whiteListIds": [
-      "61579509758592",
-      "61579765847432"
+      "61579509758592"
     ],
     "notes": "if you enable this feature, only the ids in the whiteListIds list can use the bot"
   },
