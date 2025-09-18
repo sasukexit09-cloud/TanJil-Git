@@ -27,17 +27,17 @@ module.exports = {
 ⎯ [(🌷) OWNER INFO (🌷)] ⎯
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
-Name   : TanJil Hasan 🎀
+Name   : 💋𝗔𝗬𝗔𝗡💋
 UID    : ${senderID}
 U.n.   : tanjilhasan420
-Age    : 𝟷𝟿+
+Age    : 𝟷8💋
 House  : Dhaka
 Status : Single
 
 ⎯⎯ [ 🤖 BOT INFO 🤖 ] ⎯⎯
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
-Name   : Hi Na Ta 
+Name   : ⚡𝐒𝐀 𝐒𝐔 𝐊𝐄⚡
 UID    : 61579021162546
 U.n.   : 𝙴𝚁𝚁𝙾𝚁
 Age    : 1+
@@ -51,7 +51,7 @@ CRU    : ${cpu}
 ⎯⎯⎯⎯ [ 🔧 BOT ] ⎯⎯⎯⎯
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
-👑 Author : 🎀 𝚃 𝙰 𝙽 𝙹 𝙸 𝙻 🎀
+👑 Author : 🎀 𝗔𝗬𝗔𝗡 🎀
     `;
 
     api.sendMessage(message, threadID);
