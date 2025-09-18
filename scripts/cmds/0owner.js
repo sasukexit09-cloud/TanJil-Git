@@ -1,74 +1,67 @@
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
+
 module.exports = {
   config: {
     name: "owner",
-    version: 2.3,
-    author: "〲 T A N J I L ツ",
-    longDescription: "Info about bot and owner",
+    version: "2.0",
+    author: "Tarek",
+    shortDescription: "Display bot and owner information",
+    longDescription: "Shows detailed info including bot name, prefix, and owner's personal information.",
     category: "Special",
     guide: {
       en: "{p}{n}",
     },
   },
 
-  onStart: async function ({ api, event, usersData, message }) {
-    // Primary & Backup Image
-    const mainImg = "https://files.catbox.moe/b2yna5kbctsvlk34.jpg"; 
-    const fallbackImg = "https://scontent.xx.fbcdn.net/v/t1.15752-9/537397354_1980840699345865_2351462868400401293_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeELEqegXfQ4KYDcfhxBeTOQ8Sc-8NlEdSTxJz7w2UR1JNU_ulrw4ibTJWIFZC7qozxdd28C1XQ63DB782_ToWCc&_nc_ohc=Esrv3yEutLMQ7kNvwEQT-7K&_nc_oc=Adl4QxI9HvtgZvHZznG2sj2I-BKlOq-nyQh0zEvkzbMEVnre7bHSgXlSpg384MVJKso&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD3AHQtbJtqIVF2z5_YpsUMvsuuJlLjkLHZvqv8xMhH5V-0A&oe=68D18740"; // backup
-
-    let attachment;
-    try {
-      attachment = await global.utils.getStreamFromURL(mainImg);
-    } catch (e) {
-      attachment = await global.utils.getStreamFromURL(fallbackImg);
-    }
-
+  onStart: async function ({ api, event, args, message, usersData }) {
     const id = event.senderID;
     const userData = await usersData.get(id);
     const name = userData.name;
-    const mentions = [{ id, tag: name }];
+    const mention = [{ id, tag: name }];
 
-    // Owner & Bot Info
-    const info = {
-      botName: "✨YOUR 卝 চুন্নি✨",
-      prefix: "/",
-      ownerName: "〲 T A N J I L ツ",
-      uid: "61579509758592",
-      username: "picchi143",
-      gender: "Male",
-      number: "01749315157",
-      age: "19 ±",
-      relationship: "Single",
-      study: "Honours",
-      location: "Dhaka, Bangladesh",
-      religion: "Islam"
-    };
+    // 🛠 Convert Google Drive view link to direct download link
+    const fileId = "1QQ4rcb5mnLytHKuavPxOjx0rF-YuOTaS";
+    const directURL = `https://files.catbox.moe/tmy319.mp4`;
 
-    const body = `⎯ [(🌷) OWNER INFO (🌷)] ⎯
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+    // ⏬ Download the file temporarily
+    const filePath = path.join(__dirname, "owner-video.mp4");
+    const response = await axios({
+      url: directURL,
+      method: "GET",
+      responseType: "stream"
+    });
 
-Name     : ${info.ownerName}
-UID      : ${info.uid}
-U.n.     : ${info.username}
+    const writer = fs.createWriteStream(filePath);
+    response.data.pipe(writer);
 
-Age      : ${info.age}
-Study    : ${info.study}
-Status   : ${info.relationship}
+    await new Promise((resolve, reject) => {
+      writer.on("finish", resolve);
+      writer.on("error", reject);
+    });
 
-Number   : ${info.number}
-House    : ${info.location}
-Religion : ${info.religion}
+    const info = 
+`━━━━━━━━━━━━━━━━
+👋 𝗛𝗲𝗹𝗹𝗼, ${name}
 
-⎯⎯⎯⎯ [ 🔧 BOT INFO ] ⎯⎯⎯⎯
-⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+📌 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢
+• 𝗡𝗮𝗺𝗲➝ ✨𝐒𝐀 𝐒𝐔 𝐊𝐄✨
+• 𝗣𝗿𝗲𝗳𝗶𝘅 ➝! 
 
-🤖 Bot Name : ${info.botName}
-📌 Prefix   : ${info.prefix}
-👑 Author   : ${info.ownerName}`;
+👤 𝗢𝗪𝗡𝗘𝗥 𝗜𝗡𝗙𝗢
+• 𝗡𝗮𝗺𝗲 ➝ ⚡𝐀𝐘𝐀𝐍✨
+• 𝗚𝗲𝗻𝗱𝗲𝗿 ➝ 𝗠𝗮𝗹𝗲
+• 𝗔𝗴𝗲 ➝ 18💋
+• 𝗦𝘁𝗮𝘁𝘂𝘀 ➝ SINGEL✨
+• 𝗘𝗱𝘂𝗰𝗮𝘁𝗶𝗼𝗻 ➝ 𝗗𝗶𝗽𝗹𝗼𝗺𝗮 𝗶𝗻 𝗖𝗶𝘃𝗶𝗹 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴
+• 𝗟𝗼𝗰𝗮𝘁𝗶𝗼𝗻 ➝ ɢᴀᴢɪᴘᴜʀ⚡
+━━━━━━━━━━━━━━━━━`;
 
     message.reply({
-      body,
-      attachment,
-      mentions
+      body: info,
+      mentions: mention,
+      attachment: fs.createReadStream(filePath)
     });
   }
 };
